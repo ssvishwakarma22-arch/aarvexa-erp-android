@@ -29,6 +29,13 @@ export JAVA_HOME="${JAVA_HOME:-/usr/lib/jvm/java-17-openjdk-amd64}"
 export ANDROID_SDK_ROOT="${ANDROID_HOME}"
 export PATH="/opt/gradle-8.7/bin:${ANDROID_HOME}/cmdline-tools/latest/bin:${ANDROID_HOME}/platform-tools:${PATH}"
 
+sudo tee /etc/profile.d/android-dev.sh >/dev/null <<EOF
+export JAVA_HOME=${JAVA_HOME}
+export ANDROID_HOME=${ANDROID_HOME}
+export ANDROID_SDK_ROOT=${ANDROID_HOME}
+export PATH="/opt/gradle-8.7/bin:\${ANDROID_HOME}/cmdline-tools/latest/bin:\${ANDROID_HOME}/platform-tools:\${PATH}"
+EOF
+
 echo "Toolchain versions:"
 java -version
 gradle --version | head -n 3
