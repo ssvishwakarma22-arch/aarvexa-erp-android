@@ -21,7 +21,9 @@ if [[ ! -x "${SDK_MANAGER}" ]]; then
 fi
 
 echo "Ensuring Android SDK packages are installed..."
-yes | "${SDK_MANAGER}" --sdk_root="${ANDROID_HOME}" "${PACKAGES[@]}" >/dev/null
+set +o pipefail
+yes | "${SDK_MANAGER}" --sdk_root="${ANDROID_HOME}" "${PACKAGES[@]}" >/dev/null 2>&1 || true
+set -o pipefail
 
 export JAVA_HOME="${JAVA_HOME:-/usr/lib/jvm/java-17-openjdk-amd64}"
 export ANDROID_SDK_ROOT="${ANDROID_HOME}"
