@@ -10,14 +10,24 @@ android {
         applicationId 'com.aarvexa.erp'
         minSdk 24
         targetSdk 34
-        versionCode 15
-        versionName '15.0'
+        versionCode 16
+        versionName '16.0'
+
+        buildConfigField 'String', 'ERP_URL', '"https://aarvexaimf.com/"'
+    }
+
+    buildFeatures {
+        buildConfig true
     }
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
         }
     }
 
